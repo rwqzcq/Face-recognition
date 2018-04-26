@@ -1,0 +1,47 @@
+{extend name="public/base"}
+{block name="seo" /}
+<title>{$title|default='标题'}</title>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 签到与签退 <span class="c-gray en">&gt;</span> 签到 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="Hui-article">
+		<article class="cl pd-20">
+			<div id="clock" style="margin: 50px auto 0px auto; width: 400px; height:400px">				
+			</div>						
+			<div class="row cl">
+				<form action="{:url('doSignin')}" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上传照片1：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input type="file" name="img[]" required/>
+						</div>
+					</div>
+					<div class="row cl">
+						<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上传照片2：</label>
+						<div class="formControls col-xs-8 col-sm-9">
+							<input type="file" name="img[]"/>
+						</div>
+					</div>
+                    <div class="row cl">
+						<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+							<input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;签到&nbsp;&nbsp;">
+						</div>
+					</div>
+				</form>
+			</div>
+		</article>
+	</div>
+</section>
+{/block}
+
+{block name="js"}
+<script src="__STATIC__/lib/clock/jquery.clock.js"></script>
+<script>
+    $(function(){
+        $('#clock').clock();
+    });
+    </script>
+{/block}
+
+

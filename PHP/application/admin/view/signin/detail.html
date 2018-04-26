@@ -1,0 +1,45 @@
+{extend name="public/base"}
+{block name="seo" /}
+<title>{$title|default='标题'}</title>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+    <h2>签到人员名单,共{$yes_amount}人</h2>
+    <table class="table table-border table-bordered table-bg table-hover table-sort" width="150">
+        <thead>
+            <tr class="text-c">
+                <th width="60">姓名</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr class="text-c va-m ">
+                        <td>
+                <?php foreach($yes as $v){
+            
+                echo $v.'  ';
+            
+                }?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <h2>旷课人员名单,共{$kuangke_amount}人</h2>
+    <table class="table table-border table-bordered table-bg table-hover table-sort">
+        <thead>
+            <tr class="text-c">
+                <th width="60">姓名</th>
+            </tr>
+        </thead>
+        <tbody>
+                <tr class="text-c va-m ">
+                        <td>
+                <?php foreach($kuangke as $v){
+            
+                echo $v.'  ';
+            
+                }?>
+                </td>
+        </tbody>
+    </table>
+</section>
+{/block}
