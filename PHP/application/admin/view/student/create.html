@@ -1,0 +1,33 @@
+{extend name="public/base"}
+{block name="seo" /}
+<title>{$title|default='标题'}</title>
+{/block}
+{block name="content"}
+<article class="cl pd-20">
+        <form action="{:url('save')}" method="post" class="form form-horizontal" id="form-admin-add" enctype="multipart/form-data">
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学号：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="number" class="input-text" value="" placeholder="" id="adminName" name="id" width="200">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>学生名：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="text" class="input-text" autocomplete="off" value="" placeholder="" id="password" name="name">
+                </div>
+            </div>
+            <div class="row cl">
+                <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>上传照片：</label>
+                <div class="formControls col-xs-8 col-sm-9">
+                    <input type="file" name="img"/>
+                </div>
+            </div>
+            <div class="row cl">
+                <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+                    <input class="btn btn-primary radius" type="submit" value="&nbsp;&nbsp;提交&nbsp;&nbsp;">
+                </div>
+            </div>
+        </form>
+    </article>
+{/block}

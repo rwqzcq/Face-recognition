@@ -13,12 +13,28 @@ class Student extends Base {
 		$this->model = new Model;
 	}
 	public function index() {
+		$where = [];
+		$request = Request::instance();
+		if($request->has('name', 'get')) {
+			$name = $request->param('name');
+			$where['name'] = ['like', "%{$name}%"];
+		}
 		$this->view->assign('title', '学生列表');
-		$students = Model::all();
+		$students = Model::all(function($query)use($where){
+			$query->where($where);
+		});
+		$count = Model::count();
+		$this->view->assign('count', $count);
 		$this->view->assign('lists', $students);
 		return $this->view->fetch();
 	}	
-
+	public function create() {
+		$this->view->assign('title', '学生添加');
+		return $this->view->fetch();
+	}
+	public function save(Request $request) {
+		$this->view->assign('title', '学生添加');
+	}
 
 
 

@@ -8,11 +8,13 @@
         <div class="Hui-article">
             <div >
                 <div class="pd-20">
-                    <div class="text-c">				
-                        <input type="text" name="" id="" placeholder=" 学生名称" style="width:250px" class="input-text">
-                        <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                    <div class="text-c">	
+                        <form action="{:url('index')}">			
+                            <input type="text" name="name" id="" placeholder=" 学生名称" style="width:250px" class="input-text">
+                            <button name="" id="" class="btn btn-success" type="submit"><i class="Hui-iconfont">&#xe665;</i> 搜索</button>
+                         </form>
                     </div>
-                    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" onclick="" href="javascript:;"><i class="Hui-iconfont">&#xe600;</i> 添加学生</a></span> <span class="r">共有X名学生：<strong>54</strong> 人</span> </div>
+                    <div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="l"><a class="btn btn-primary radius" href="{:url('create')}"><i class="Hui-iconfont">&#xe600;</i> 添加学生</a></span> <span class="r">共有学生：<strong>{$count}</strong> 人</span> </div>
                     <div class="mt-20">
                         <table class="table table-border table-bordered table-bg table-hover table-sort">
                             <thead>
