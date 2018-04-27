@@ -5,6 +5,7 @@ use think\Request;
 use think\Session;
 use app\admin\controller\Base;
 use app\admin\model\Student as Model;
+use think\Validate;
 use face\Client;
 class Student extends Base {
 	public function _initialize() {
@@ -12,6 +13,9 @@ class Student extends Base {
 		header("Content-type:text/html;charset=utf-8");
 		$this->model = new Model;
 	}
+	/**
+	 * 显示系统的首页
+	 */
 	public function index() {
 		$where = [];
 		$request = Request::instance();
@@ -28,15 +32,110 @@ class Student extends Base {
 		$this->view->assign('lists', $students);
 		return $this->view->fetch();
 	}	
+	/**
+	 * 显示学生添加的页面
+	 */
 	public function create() {
 		$this->view->assign('title', '学生添加');
 		return $this->view->fetch();
 	}
+	/**
+	 * 保存更新的资源
+	 */
 	public function save(Request $request) {
-		$this->view->assign('title', '学生添加');
+		if($request->isPost()) {
+			$data = $request->param();
+			$id = $data['id'];
+			$student = Model::get($id);
+			if($student != null) {
+				return $this->error('学号已经存在');
+			}
+			/* 数据验证 */
+			$validate = new Validate(['id' => 'number|require', 'name' => 'require', ]);
+			if (!$validate->check($data)) {
+				return $this->error($validate->getError());
+			}
+			// 处理文件上传
+			$file = $request->file('img');
+			if($file != null){				
+				$info = $file->move(ROOT_PATH . 'public' . DS . 'static'.DS.'uploads');
+				if($info) {
+					$data['img'] = $info->getSaveName();
+				} else {
+					return $this->error('图片上传失败!');
+				}
+			} else {
+				return $this->error('没有上传图片');
+			}
+			if(Model::create($data)) {
+				return $this->success('新增成功', 'index');
+			} else {
+				return $this->error('增加失败!');
+			}	 
+		} else {
+			return $this->error('非法请求');
+		}		
 	}
-
-
+	public function edit($id) {
+		$this->view->assign('title', '学生信息修改');
+		$this->view->assign('id', $id);
+		$student = Model::get(intval($id));
+		if($student == null) {
+			return $this->error('没有学生信息');
+		}
+		$this->view->assign('student', $student);
+		return $this->view->fetch();
+	}	
+	/**
+	 * 更新数据
+	 */
+	public function update(Request $request, $id) {
+		if($request->isPost()) {
+			if(!is_numeric($id)) {
+				return $this->error('学号错误');
+			}
+			$student = Model::get($id);
+			if($student == null) {
+				return $this->error('没有学生信息');
+			}
+			$name = $request->param('name', '', 'trim');
+			$student->name = $name;
+			// 处理文件上传
+			$file = $request->file('img');
+			if($file != null){
+				$info = $file->move(ROOT_PATH . 'public' . DS . 'static'.DS.'uploads');
+				if($info) {
+					$student->img = $info->getSaveName();
+				} else {
+					return $this->error('图片上传失败!');
+				}
+			}
+			if($student->save()) {
+				return $this->success('修改成功', 'index');
+			} else {
+				return $this->error('修改失败!');
+			}	 
+		} else {
+			return $this->error('非法请求');
+		}
+	}
+	/**
+	 * 删除
+	 */
+	public function delete($id) {
+		if(!is_numeric($id)) {
+			return $this->error('请求错误');
+		}
+		$student = Model::get($id);
+		if($student == null) {
+			return $this->error('学生信息不存在');
+		}
+		if($student->delete()) {
+			return $this->success('删除成功');
+		} else {
+			return $this->error('删除失败');
+		}
+	}
 
 	/**
 	 * 下面的代码已经废弃

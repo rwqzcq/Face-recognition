@@ -1,0 +1,43 @@
+{extend name="public/base"}
+{block name="seo" /}
+<title>{$title|default='标题'}</title>
+{/block}
+{block name="content"}
+<section class="Hui-article-box">
+	<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 签到管理 <span class="c-gray en">&gt;</span> 签到统计 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+	<div class="Hui-article">
+		<div >
+			<div class="pd-20">
+				<div class="cl pd-5 bg-1 bk-gray mt-20"> <span class="r">共签到：<strong>{$count}</strong> 天</span> </div>
+				<div class="mt-20">
+					<table class="table table-border table-bordered table-bg table-hover table-sort">
+						<thead>
+							<tr class="text-c">
+								<th width="40">ID</th>
+								<th width="">日期</th>
+								<th width="">实到人数</th>
+								<th width="">迟到人数</th>
+                                <th width="">旷课人数</th>
+                                <th>查看详情</th>
+							</tr>
+						</thead>
+						<tbody>
+                            {volist name="lists" id="vo"}
+							<tr class="text-c va-m">
+								<td>{$vo.id}</td>
+								<td>{$vo.date}</td>
+								<td>{$vo.yes|count}</td>
+								<td>{$vo.late|count}</td>
+                                <td>{$vo.kuangke|count}</td>	
+                                <td><a href="{:url('detail', ['id' => $vo.id])}">查看详情</a></td>							
+							</tr>
+							{/volist}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+	</div>
+</section>
+{/block}

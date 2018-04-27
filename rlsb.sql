@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50540
+Source Server         : locahost
+Source Server Version : 50553
 Source Host           : localhost:3306
 Source Database       : rlsb
 
 Target Server Type    : MYSQL
-Target Server Version : 50540
+Target Server Version : 50553
 File Encoding         : 65001
 
-Date: 2018-04-26 09:32:07
+Date: 2018-04-27 09:45:24
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -29,6 +29,8 @@ CREATE TABLE `admin` (
 -- ----------------------------
 -- Records of admin
 -- ----------------------------
+INSERT INTO `admin` VALUES ('1', 'admin', '123456');
+INSERT INTO `admin` VALUES ('0', 'admin2', '123456');
 
 -- ----------------------------
 -- Table structure for `signin`
@@ -37,17 +39,18 @@ DROP TABLE IF EXISTS `signin`;
 CREATE TABLE `signin` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date` int(10) NOT NULL,
-  `yes` varchar(200) NOT NULL COMMENT '已签到人数',
-  `late` varchar(200) NOT NULL,
-  `kuangke` varchar(200) NOT NULL,
+  `yes` text NOT NULL COMMENT '已签到人数',
+  `late` text NOT NULL,
+  `kuangke` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of signin
 -- ----------------------------
-INSERT INTO `signin` VALUES ('4', '1524650527', 'a:19:{i:0;i:211706702;i:1;i:211706704;i:2;i:211706705;i:3;i:211706709;i:4;i:211706713;i:5;i:211706714;i:6;i:211706715;i:7;i:211706716;i:8;i:211706717;i:9;i:211706719;i:10;i:211706720;i:11;i:211706721;', 'a:0:{}', 'a:8:{i:0;i:211706706;i:1;i:211706707;i:2;i:211706708;i:3;i:211706710;i:4;i:211706711;i:5;i:211706712;i:6;i:211706718;i:7;i:211706726;}');
-INSERT INTO `signin` VALUES ('5', '1524654502', 'a:19:{i:0;i:211706702;i:1;i:211706704;i:2;i:211706705;i:3;i:211706709;i:4;i:211706713;i:5;i:211706714;i:6;i:211706715;i:7;i:211706716;i:8;i:211706717;i:9;i:211706719;i:10;i:211706720;i:11;i:211706721;', 'a:0:{}', 'a:8:{i:0;i:211706706;i:1;i:211706707;i:2;i:211706708;i:3;i:211706710;i:4;i:211706711;i:5;i:211706712;i:6;i:211706718;i:7;i:211706726;}');
+INSERT INTO `signin` VALUES ('8', '1524787480', 'a:19:{i:0;i:211706702;i:1;i:211706704;i:2;i:211706705;i:3;i:211706709;i:4;i:211706713;i:5;i:211706714;i:6;i:211706715;i:7;i:211706716;i:8;i:211706717;i:9;i:211706719;i:10;i:211706720;i:11;i:211706721;i:12;i:211706722;i:13;i:211706723;i:14;i:211706725;i:15;i:211706727;i:16;i:211706728;i:17;i:211706729;i:18;i:211706730;}', 'a:0:{}', 'a:8:{i:0;i:211706706;i:1;i:211706707;i:2;i:211706708;i:3;i:211706710;i:4;i:211706711;i:5;i:211706712;i:6;i:211706718;i:7;i:211706726;}');
+INSERT INTO `signin` VALUES ('9', '1524792984', 'a:1:{i:0;i:211706712;}', 'a:0:{}', 'a:26:{i:0;i:211706702;i:1;i:211706704;i:2;i:211706705;i:3;i:211706706;i:4;i:211706707;i:5;i:211706708;i:6;i:211706709;i:7;i:211706711;i:8;i:211706713;i:9;i:211706714;i:10;i:211706715;i:11;i:211706716;i:12;i:211706717;i:13;i:211706718;i:14;i:211706719;i:15;i:211706720;i:16;i:211706721;i:17;i:211706722;i:18;i:211706723;i:19;i:211706725;i:20;i:211706726;i:21;i:211706727;i:22;i:211706728;i:23;i:211706729;i:24;i:211706730;i:25;i:2015214531;}');
+INSERT INTO `signin` VALUES ('10', '1524793305', 'a:1:{i:0;i:211706709;}', 'a:0:{}', 'a:26:{i:0;i:211706702;i:1;i:211706704;i:2;i:211706705;i:3;i:211706706;i:4;i:211706707;i:5;i:211706708;i:6;i:211706711;i:7;i:211706712;i:8;i:211706713;i:9;i:211706714;i:10;i:211706715;i:11;i:211706716;i:12;i:211706717;i:13;i:211706718;i:14;i:211706719;i:15;i:211706720;i:16;i:211706721;i:17;i:211706722;i:18;i:211706723;i:19;i:211706725;i:20;i:211706726;i:21;i:211706727;i:22;i:211706728;i:23;i:211706729;i:24;i:211706730;i:25;i:2015214531;}');
 
 -- ----------------------------
 -- Table structure for `student`
@@ -70,7 +73,6 @@ INSERT INTO `student` VALUES ('211706706', '高成茁', '211706706.jpg');
 INSERT INTO `student` VALUES ('211706707', '黄天春', '211706707.jpg');
 INSERT INTO `student` VALUES ('211706708', '纪泽斌', '211706708.jpg');
 INSERT INTO `student` VALUES ('211706709', '江瑞洁', '211706709.jpg');
-INSERT INTO `student` VALUES ('211706710', '李博涵', '211706710.jpg');
 INSERT INTO `student` VALUES ('211706711', '李惠强', '211706711.jpg');
 INSERT INTO `student` VALUES ('211706712', '李秋菊', '211706712.jpg');
 INSERT INTO `student` VALUES ('211706713', '林凯亮', '211706713.jpg');
@@ -90,3 +92,4 @@ INSERT INTO `student` VALUES ('211706727', '曾坚煌', '211706727.jpg');
 INSERT INTO `student` VALUES ('211706728', '曾译新', '211706728.jpg');
 INSERT INTO `student` VALUES ('211706729', '张璟胜', '211706729.jpg');
 INSERT INTO `student` VALUES ('211706730', '张舒媛', '211706730.jpg');
+INSERT INTO `student` VALUES ('2015214531', '账上划水', '20180427\\483adaf7a8adfe70560bd76f52e5859e.jpg');

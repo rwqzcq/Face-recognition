@@ -40,7 +40,7 @@ class Signin extends Model
 	public static function checkToday(){
 		return self::get(function($query){
 			// 时间在今天0点到12点之间
-			$today = time();
+			$today = strtotime(date('Y-m-d'));
 			$tomorrow = strtotime('+1 day');
 			$query->where('date', 'between', [$today, $tomorrow]);
 		});

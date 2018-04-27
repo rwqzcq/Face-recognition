@@ -13,8 +13,8 @@ class Base extends Controller
     {
         parent::_initialize();  //继承父类中的初始化操作
         $admin_info = '';
-        Session::set('admin_id', 1);
-        Session::set('admin_info', Admin::get(1));
+        // Session::set('admin_id', 1);
+        // Session::set('admin_info', Admin::get(1));
         if(Session::get('admin_id')) {
           define('ADMIN_ID', Session::get('admin_id'));
           $admin_info = Session::get('admin_info');      

@@ -15,8 +15,7 @@ class Admin extends Base
      * @return \think\Response
      */
     public function index()
-    {
-        return '首页';        
+    {   
         $this->isLogin();
         $this->view->assign('title', '后台管理首页');
         return $this->view->fetch();
